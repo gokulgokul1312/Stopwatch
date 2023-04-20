@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: red;
+        }
+        div.stopwatch{
+            text-align: center;
+            margin:190px 500px;
+            height: 400px;
+            width: 600px;
+            
+            background-color: aqua;
+            border: 5px solid black;
+        }
+        h1{
+            color: brown;
+        }
+        h2{
+            color: darkmagenta;
+        }
+        div#watch .time{
+            font-size: 50px;
+            color: deeppink; 
+        }
+        div#watch .text{
+            color: darkblue;
+        }
+        div.button{
+            margin-top: 25px;
+            
+        }
+        div.button .btn{
+            width: 100px;
+        }
+        div.button #start{
+            background-color: orange;
+            color: black;
+        }
+        div.button #stop{
+            background-color: greenyellow;
+            color: black;
+        }
+        div.button #reset{
+            background-color: red;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="stopwatch">
+        <h1>Stop Watch</h1>
+        <h2>Stop Watch Using Javascript</h2>
+        <div id="watch">
+            <span class="time" id="hour">00</span>
+            <span class="text" >Hr</span>
+            <span class="time" id="minute">00</span>
+            <span class="text">Min</span>
+            <span class="time" id="second">00</span>
+            <span class="text">Sec</span>
+            <span class="time" id="msecond">00</span>
+            <span class="text">Msec</span>
+        </div>
+        <div class="button">
+            <button id="start" class="btn">start</button>
+            <button id="stop" class="btn">Stop</button>
+            <button id="reset" class="btn">Reset</button>
+        </div>
+    </div>
+</body>
+<script>
+    var start=document.getElementById("start");
+    var stop=document.getElementById("stop");
+    var reset=document.getElementById("reset");
+    let hour=0;
+    let minute=0;
+    let second=0;
+    let msecond=0;
+    start.addEventListener('click',function(){
+        timer=true;
+        stopWatch();
+    });
+    stop.addEventListener('click',function(){
+        timer=false;
+    });
+    reset.addEventListener('click',function(){
+        timer=false;
+        hour=0;
+        minute=0;
+        second=0;
+        msecond=0;
+        document.getElementById("hour").innerHTML="00";
+        document.getElementById("minute").innerHTML="00";
+        document.getElementById("second").innerHTML="00";
+        document.getElementById("msecond").innerHTML="00";
+    });
+    function stopWatch(){
+        if(timer){
+            msecond ++;
+            if(msecond == 100){
+                second ++;
+                msecond=0;
+            }
+            if(second == 60){
+                minute ++;
+                second=0;
+            }
+            if(minute == 60){
+                hours ++;
+                min=0;
+                second=0;
+            }
+            let hrstring=hour;
+            let minstring=minute;
+            let secstring=second;
+            let msecstring=msecond;
+            hrstring = (hour < 10) ? "0" + hrstring : hrstring;
+            minstring = (minute < 10) ? "0" + minstring : minstring;
+            secstring = (second < 10) ? "0" + secstring : secstring;
+            msecstring = (msecond < 10) ? "0" + msecstring : msecstring;
+            document.getElementById("hour").innerHTML=hrstring;
+            document.getElementById("minute").innerHTML=minstring;
+            document.getElementById("second").innerHTML=secstring;
+            document.getElementById("msecond").innerHTML=msecstring;
+            setTimeout(stopWatch,10);
+        }
+    }
+</script>
+</html>
