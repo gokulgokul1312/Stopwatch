@@ -81,6 +81,7 @@
     let minute=0;
     let second=0;
     let msecond=0;
+    let timer;
     start.addEventListener('click',function(){
         timer=true;
         stopWatch();
@@ -111,8 +112,8 @@
                 second=0;
             }
             if(minute == 60){
-                hours ++;
-                min=0;
+                hour ++;
+                minute=0;
                 second=0;
             }
             let hrstring=hour;
